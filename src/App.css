@@ -1,5 +1,13 @@
 .chart-container {
-  border: 1px solid black;
-  padding: 20px;
+  padding: 10px;
+  background: rgb(224, 224, 224);
+}
 
+.inputs-container {
+  padding: 30px;
+}
+
+.inputs-container form {
+  display: flex;
+  flex-direction: column;
 }

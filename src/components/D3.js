@@ -5,10 +5,10 @@ import React, { useState } from 'react'
 import BarChart from './BarChart'
 
 export default function D3() {
-    const [data, setData] = useState([1000, 1450, 1275, 2200])
+    const [data, setData] = useState([{ name: "Marshall", num: 32 }, { name: 'Mike', num: 44 }, { name: 'Olly', num: 78 }, { name: 'Jax', num: 10 }])
     const [chartType, setChartType] = useState('bar')
     const [title, setTitle] = useState("")
-
+    const [yLabel, setYLabel] = useState("")
     const renderChart = () => {
         // display the type of chart user is wanting // Pie or Bar
         switch (chartType) {
@@ -16,7 +16,7 @@ export default function D3() {
                 // return <PieChart data={data} />
                 return 'Pie Chart coming soon '
             default:
-                return <BarChart data={data} title={title} />
+                return <BarChart data={data} title={title} yLabel={yLabel} />
         }
     }
 
@@ -44,12 +44,26 @@ export default function D3() {
         input.value = ""
     }
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        e.target.reset()
+    }
     return (
         <div>
-            <button onClick={() => setChartType('pie')}> Pie Chart</button>
-            <button onClick={() => setChartType('bar')}> Bar Chart</button>
-            <input id="dataInput" type="text" placeholder="add data" onKeyUp={handleKeyUp} />
-            <input id="titleInput" type="text" placeholder="title of your chart" onKeyUp={handleKeyUp} />
+            <div className="inputs-container">
+                <form onSubmit={handleSubmit}>
+                    <label for="xAxis"> X Axis </label>
+                    <input id="xAxis" type="text" placeholder="x axis" required onKeyUp={handleKeyUp} />
+                    <label for="yAxis">Y Axis</label>
+                    <input id="yAxis" type="text" placeholder="y axis" required onKeyUp={handleKeyUp} />
+                    <button type='submit'> Add Data</button>
+                </form>
+
+                <div className="chart-info">
+                    <input id="yLabel" type="text" placeholder="LABEL Y AXIS" onKeyUp={handleKeyUp} />
+                    <input id="titleInput" type="text" placeholder="CHART TITLE" onKeyUp={handleKeyUp} />
+                </div>
+            </div>
             <div className="chart-container">
                 {
                     renderChart()
