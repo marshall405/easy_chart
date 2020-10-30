@@ -15,7 +15,7 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
             bottom: 50,
             left: 40
         }
-        let height = chartHeight || 600
+        let height = chartHeight || 400
         let width = window.innerWidth
 
         let y = d3.scaleLinear()
@@ -30,10 +30,9 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
         let yTitle = g => g.append("text")
             .attr("font-family", "sans-serif")
             .attr("font-size", 12)
-            .style('fill', chartTextColor || 'black')
+            .attr('class', 'yTitle')
             .attr("y", 25)
-            .attr("x", 3)
-            .text(yLabel || 'Y AXIS');
+            .attr("x", 3);
 
         let yAxis = g => g
             .attr("transform", `translate(${margin.left},0)`)
@@ -52,14 +51,13 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
             .join('g')
 
         bar.append('rect')
-            .attr('fill', barColor || 'steelblue')
             .attr('x', d => x(d.name))
             .attr('y', d => y(d.num))
             .attr('height', d => y(0) - y(d.num))
             .attr('width', x.bandwidth());
 
         bar.append('text')
-            .attr('fill', barTextColor || 'white')
+            .attr('class', 'barText')
             .attr('x', d => x(d.name) + x.bandwidth() / 2 - 20)
             .attr('y', d => y(d.num) + 30)
             .text(d => d.num);
@@ -67,16 +65,30 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
         svg.append("g")
             .call(xAxis)
             .selectAll('text')
-            .attr('transform', `rotate(${xRotate >= 0 ? xRotate : 30})`);
+            .attr('class', 'xAxis')
+
 
         svg.append("g")
             .call(yAxis);
 
         svg.call(yTitle);
 
+    }, [data, chartHeight])
+
+    useEffect(() => {
+        // update styles without complete rerender of chart 
+        d3.selectAll('.xAxis')
+            .attr('transform', `rotate(${xRotate >= 0 ? xRotate : 30})`);
+        d3.selectAll('rect')
+            .attr('fill', barColor || 'steelblue');
+        d3.selectAll('.yTitle')
+            .attr('fill', chartTextColor || 'black')
+            .text(yLabel || 'Y AXIS');
+        d3.selectAll('.barText')
+            .attr('fill', barTextColor || 'white')
     })
     return (
-        <div style={{ 'background': chartColor || 'white', 'color': chartTextColor || 'black' }}>
+        <div style={{ 'background': chartColor || 'white', 'color': chartTextColor || 'rgb(95, 95, 95)' }}>
             <h3 style={{ 'textAlign': 'center' }}>
                 {
                     title ? title : 'Bar Chart'

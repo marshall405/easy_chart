@@ -1,10 +1,9 @@
 .chart-container {
   padding: 10px;
-  /* background: rgb(224, 224, 224); */
 }
 
 .inputs-container {
-  padding: 30px;
+  padding: 10px;
   display: flex;
   justify-content: space-between; 
 }
@@ -23,10 +22,10 @@
   flex: 1;
   padding: 15px;
   margin: 2px;
-  background: rgb(36, 88, 67);
-  color: #FFF;
+  background: rgb(253, 253, 253);
+  color: rgb(95, 95, 95);
   border-radius: 5px;
-  box-shadow: 0px 2px 4px black;
+  box-shadow: 0px 1px 1px black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,4 +73,37 @@ label {
 }
 .clear {
   background-color: rgb(235, 93, 93);
+}
+
+
+
+.settings-button {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  right: 0;
+  z-index: 2;
+}
+.modal {
+  width: 0;
+  bottom: 0;
+  height: 100vh;
+  justify-content: right;
+  background: rgba(0,0,0,.2);
+  position: fixed;
+  opacity: 0;
+  transition: all .25s ease-in-out;
+  pointer-events: none;
+}
+.show {
+  width: 100%;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chart-info {
+  position: absolute;
+  right:0;
+  width: 40%;
+  height: 100vh;
 }

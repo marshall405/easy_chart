@@ -14,7 +14,9 @@ export default function D3() {
     const [chartColor, setChartColor] = useState("")
     const [chartTextColor, setChartTextColor] = useState("")
     const [xRotate, setXRotate] = useState(0)
-    const [chartHeight, setChartHeight] = useState(600)
+    const [chartHeight, setChartHeight] = useState(400)
+
+    const [show, setShow] = useState(false)
 
     const renderChart = () => {
         // display the type of chart user is wanting // Pie or Bar
@@ -93,9 +95,9 @@ export default function D3() {
     }
     return (
         <div>
+            <button className="settings-button button" onClick={() => setShow(!show)}>Settings</button>
             <div className="inputs-container">
                 <div className="add-data top">
-                    <h4> New Data Details </h4>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="xAxis"> X AXIS </label>
                         <input id="xAxis" type="text" placeholder="NAME" required onKeyUp={handleKeyUp} />
@@ -104,18 +106,23 @@ export default function D3() {
                         <button className="submit button" type='submit'> Add Data</button>
                     </form>
                 </div>
-                <div className="chart-info top">
-                    <h4> Chart Details </h4>
+            </div>
+            <div id="modal" className={`modal ${show ? 'show' : null}`} onClick={(e) => {
+                if (e.target.id === "modal") setShow(!show);
+            }}>
+                <div className={`chart-info top`}>
+                    <h4> Chart Settings </h4>
                     <input id="yLabel" type="text" placeholder="LABEL Y AXIS" onKeyUp={handleKeyUp} />
                     <input id="titleInput" type="text" placeholder="CHART TITLE" onKeyUp={handleKeyUp} />
-                    <input id="barColor" type="text" placeholder="BAR COLOR" onKeyUp={handleKeyUp} />
-                    <input id="barTextColor" type="text" placeholder="BAR TEXT COLOR" onKeyUp={handleKeyUp} />
                     <input id="chartColor" type="text" placeholder="CHART COLOR" onKeyUp={handleKeyUp} />
                     <input id="chartTextColor" type="text" placeholder="CHART TEXT COLOR" onKeyUp={handleKeyUp} />
+                    <input id="barColor" type="text" placeholder="BAR COLOR" onKeyUp={handleKeyUp} />
+                    <input id="barTextColor" type="text" placeholder="BAR TEXT COLOR" onKeyUp={handleKeyUp} />
+                    <br />
                     <input id="xRotate" value={xRotate} type="range" min="0" max="180" onChange={handleOnChange}></input>
                     <label htmlFor="xRotate">Rotate X Axis values</label>
-
-                    <input id="chartHeight" value={chartHeight} type="range" min="300" max="1200" onChange={handleOnChange}></input>
+                    <br />
+                    <input id="chartHeight" value={chartHeight} type="range" min="200" max="1200" onChange={handleOnChange}></input>
                     <label htmlFor="chartHeight"> Adjust Chart Height</label>
 
                 </div>
