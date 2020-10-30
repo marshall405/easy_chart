@@ -58,8 +58,8 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
 
         bar.append('text')
             .attr('class', 'barText')
-            .attr('x', d => x(d.name) + x.bandwidth() / 2 - 20)
-            .attr('y', d => y(d.num) + 30)
+            .attr('x', d => x(d.name) + x.bandwidth() / 2 - 10)
+            .attr('y', d => y(d.num) + 12)
             .text(d => d.num);
 
         svg.append("g")
