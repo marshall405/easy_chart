@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import * as d3 from "d3";
 
 
-export default function BarChart({ data, title, yLabel, barColor, barTextColor, chartColor, chartTextColor, xRotate, chartHeight }) {
+export default function BarChart({ data, title, yLabel, barColor, barTextColor, chartColor, chartTextColor, xRotate, chartHeight, focus }) {
 
     useEffect(() => {
         document.getElementById('chart').innerHTML = '' // slight hack? but clears SVG to avoid duplicates
@@ -86,6 +86,7 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
             .text(yLabel || 'Y AXIS');
         d3.selectAll('.barText')
             .attr('fill', barTextColor || 'white')
+
     })
     return (
         <div style={{ 'background': chartColor || 'white', 'color': chartTextColor || 'rgb(95, 95, 95)' }}>

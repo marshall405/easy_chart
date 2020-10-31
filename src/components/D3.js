@@ -15,7 +15,6 @@ export default function D3() {
     const [chartTextColor, setChartTextColor] = useState("")
     const [xRotate, setXRotate] = useState(0)
     const [chartHeight, setChartHeight] = useState(400)
-
     const [show, setShow] = useState(false)
 
     const renderChart = () => {
@@ -30,33 +29,28 @@ export default function D3() {
     }
 
     const handleKeyUp = (e) => {
-        // if key is Enter
-        if (e.keyCode === 13) {
-            switch (e.target.id) {
-                case 'titleInput':
-                    setTitle(e.target.value)
-                    break;
-                case 'yLabel':
-                    setYLabel(e.target.value)
-                    break;
-                case 'barColor':
-                    setBarColor(e.target.value)
-                    break;
-                case 'barTextColor':
-                    setBarTextColor(e.target.value)
-                    break;
-                case 'chartColor':
-                    setChartColor(e.target.value)
-                    break;
-                case 'chartTextColor':
-                    setChartTextColor(e.target.value)
-                    break;
-                default:
-                    break;
-            }
-            e.target.value = ""
+        switch (e.target.id) {
+            case 'titleInput':
+                setTitle(e.target.value)
+                break;
+            case 'yLabel':
+                setYLabel(e.target.value)
+                break;
+            case 'barColor':
+                setBarColor(e.target.value)
+                break;
+            case 'barTextColor':
+                setBarTextColor(e.target.value)
+                break;
+            case 'chartColor':
+                setChartColor(e.target.value)
+                break;
+            case 'chartTextColor':
+                setChartTextColor(e.target.value)
+                break;
+            default:
+                break;
         }
-
     }
 
     const clearChart = () => {
@@ -92,6 +86,9 @@ export default function D3() {
             default:
                 break;
         }
+    }
+
+    const handleFocus = e => {
     }
     return (
         <div>
