@@ -1,5 +1,113 @@
 .chart-container {
-  border: 1px solid black;
-  padding: 20px;
+  padding: 10px;
+}
 
+.inputs-container {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between; 
+}
+
+.inputs-container form {
+  width: 100%;
+  margin: 0 5px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.top {
+  position: relative;
+  flex: 1;
+  padding: 15px;
+  margin: 2px;
+  background: rgb(253, 253, 253);
+  color: rgb(95, 95, 95);
+  border-radius: 5px;
+  box-shadow: 0px 1px 1px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.top h4 {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+input {
+  width: 80%;
+  margin: 3px;
+  padding: 5px;
+  border: 2px solid rgb(192, 192, 192); 
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+label {
+  width: 80%;
+  font-size: .7em;
+}
+
+.button {
+  cursor: pointer;
+  width: 70%;
+  max-width: 250px;
+  padding: 10px;
+  border: none;
+  box-shadow: 0px 1px 4px black;
+  border-radius: 5px;
+}
+.button:hover {
+  box-shadow: none;
+}
+
+.submit.button {
+  background: rgba(91, 173, 141, 0.651);
+}
+.clear-button-container {
+  text-align: center;
+  margin: 15px;
+}
+.clear {
+  background-color: rgb(235, 93, 93);
+}
+
+
+
+.settings-button {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  right: 0;
+  z-index: 2;
+}
+.modal {
+  width: 0;
+  bottom: 0;
+  height: 100vh;
+  justify-content: right;
+  background: rgba(0,0,0,.2);
+  position: fixed;
+  opacity: 0;
+  transition: width, opacity, .25s ease-in-out;
+  pointer-events: none;
+}
+.show {
+  width: 100%;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chart-info {
+  position: absolute;
+  right:0;
+  width: 40%;
+  height: 100vh;
+}
+
+.yTitle {
+  border: 1px solid black;
 }
