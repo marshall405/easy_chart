@@ -92,7 +92,7 @@ label {
   background: rgba(0,0,0,.2);
   position: fixed;
   opacity: 0;
-  transition: all .25s ease-in-out;
+  transition: width, opacity, .25s ease-in-out;
   pointer-events: none;
 }
 .show {
