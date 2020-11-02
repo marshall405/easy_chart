@@ -17,6 +17,11 @@ export default function D3() {
     const [chartHeight, setChartHeight] = useState(400)
     const [show, setShow] = useState(false)
 
+
+    const setFocus = (id) => {
+        setShow(!show)
+        document.getElementById(id).focus()
+    }
     const renderChart = () => {
         // display the type of chart user is wanting // Pie or Bar
         switch (chartType) {
@@ -24,7 +29,7 @@ export default function D3() {
                 // return <PieChart data={data} />
                 return 'Pie Chart coming soon '
             default:
-                return <BarChart data={data} title={title} yLabel={yLabel} barColor={barColor} barTextColor={barTextColor} chartColor={chartColor} chartTextColor={chartTextColor} xRotate={xRotate} chartHeight={chartHeight} />
+                return <BarChart data={data} title={title} yLabel={yLabel} barColor={barColor} barTextColor={barTextColor} chartColor={chartColor} chartTextColor={chartTextColor} xRotate={xRotate} chartHeight={chartHeight} setFocus={setFocus} />
         }
     }
 

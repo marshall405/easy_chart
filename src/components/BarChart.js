@@ -3,8 +3,7 @@ import React, { useEffect } from 'react'
 //import d3
 import * as d3 from "d3";
 
-
-export default function BarChart({ data, title, yLabel, barColor, barTextColor, chartColor, chartTextColor, xRotate, chartHeight, focus }) {
+export default function BarChart({ data, title, yLabel, barColor, barTextColor, chartColor, chartTextColor, xRotate, chartHeight, setFocus }) {
 
     useEffect(() => {
         document.getElementById('chart').innerHTML = '' // slight hack? but clears SVG to avoid duplicates
@@ -83,16 +82,27 @@ export default function BarChart({ data, title, yLabel, barColor, barTextColor, 
             .attr('fill', barColor || 'steelblue');
         d3.selectAll('.yTitle')
             .attr('fill', chartTextColor || 'black')
-            .text(yLabel || 'Y AXIS');
+            .text(yLabel || 'Y AXIS LABEL');
         d3.selectAll('.barText')
             .attr('fill', barTextColor || 'white')
 
     })
+
+    useEffect(() => {
+        document.getElementsByClassName('yTitle')[0].addEventListener('click', () => {
+            setFocus('yLabel')
+        })
+    })
+
+    const handleClickSetFocus = (id) => {
+        setFocus(id)
+    }
+
     return (
         <div style={{ 'background': chartColor || 'white', 'color': chartTextColor || 'rgb(95, 95, 95)' }}>
-            <h3 style={{ 'textAlign': 'center' }}>
+            <h3 style={{ 'textAlign': 'center' }} onClick={() => handleClickSetFocus('titleInput')}>
                 {
-                    title ? title : 'Bar Chart'
+                    title ? title : 'Bar Chart Title'
                 }
             </h3>
             <svg id="chart"></svg>
